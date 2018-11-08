@@ -1,0 +1,23 @@
+<div class="table-responsive">
+<table class="table table-bordered table-striped">
+    <thead>
+       <tr>
+            <th>Sr.</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Voice Enrolment</th>
+            <th>Face Enrolment</th>
+         </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let list of userList; let i = index">
+        <td>{{i+1}}</td>
+        <td>{{list.username}}</td>
+        <td>{{list.email}}</td>
+        <td>{{list.voiceEnrolled}}</td>
+        <td>{{list.faceEnrolled}}</td>
+        </tr>
+    </tbody>
+
+</table>
+</div>
