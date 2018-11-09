@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class DataService {
   constructor(private http: HttpClient) { }
+  public headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
   baseUrl = "https://biometric-access.herokuapp.com/"
   userListConfigUrl = 'biometric/users';
+  
   
 
 featchUserList() {
@@ -18,4 +20,8 @@ deleteUser(id){
     debugger
     return this.http.delete(this.baseUrl + "/biometric/users/" + id + '/delete')
 }
+addUser(obj){
+    debugger
+    return this.http.post(this.baseUrl + "/biometric/register/" , obj)
 }
+} 

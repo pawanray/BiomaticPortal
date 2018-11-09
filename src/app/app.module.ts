@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { UserListComponent } from '../app/userList/index';
 import { AddUserComponent } from '../app/addUser/index';
 import { UserDetailsComponent } from '../app/userDetails/index';
+import { faceEnrolmentComponent } from '../app/faceEnrolment/index';
 import { from } from 'rxjs';
 const appRoutes: Routes = [
   { path: 'userList', component: UserListComponent, },
@@ -24,7 +25,8 @@ const appRoutes: Routes = [
     AppComponent,
     UserListComponent,
     AddUserComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    faceEnrolmentComponent
   ],
   imports: [
     BrowserModule,

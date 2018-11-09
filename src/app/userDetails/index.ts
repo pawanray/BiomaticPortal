@@ -7,7 +7,8 @@ import {ActivatedRoute} from '@angular/router'
   templateUrl: '../userDetails/index.html',
 })
 export class UserDetailsComponent {
-  currentUserDetail:any
+  currentUserDetail:any;
+  faceEnrolledBox= 'none';
   userId:string
   constructor(private _route:ActivatedRoute, private _dataService:DataService){
     this.userId = this._route.snapshot.paramMap.get('userId')

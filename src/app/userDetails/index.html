@@ -18,11 +18,17 @@
                 <td>{{list.voiceEnrolled}}</td>
                 <td>{{list.faceEnrolled}}</td>
                 <td>
-                    <button class="btn btn-xs btn-primary">Voice Enrolment</button>&nbsp;
-                    <button class="btn btn-xs btn-primary">Face Enrolment</button>
+                    <button class="btn btn-xs btn-primary" onclick="startRecording()">Voice Enrolment</button>&nbsp;
+                    <button class="btn btn-xs btn-primary" id="videoRecoder" onclick="startFunction()">Face Enrolment</button>
                 </td>
                 </tr>
-            </tbody>
+            </tbody> 
         
         </table>
         </div>
+       
+        <div  class="face-overlay">
+        <face-enrolment></face-enrolment>
+        </div>
+       
+              
