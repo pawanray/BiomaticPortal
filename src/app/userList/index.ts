@@ -20,5 +20,13 @@ export class UserListComponent {
           });
       }
    
-  
+      deleteUserHandler(id){
+          debugger
+        this._dataService.deleteUser(id)
+        .subscribe((deleteData: any) =>  {
+            debugger
+            
+              console.log(deleteData)
+          });
+      }
 }

@@ -1,0 +1,28 @@
+<div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+               <tr>
+                    <th>Sr.</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Voice Enrolment</th>
+                    <th>Face Enrolment</th>
+                    <th>Actions</th>
+                 </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let list of currentUserDetail; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{list.username}}</td>
+                <td>{{list.email}}</td>
+                <td>{{list.voiceEnrolled}}</td>
+                <td>{{list.faceEnrolled}}</td>
+                <td>
+                    <button class="btn btn-xs btn-primary">Voice Enrolment</button>&nbsp;
+                    <button class="btn btn-xs btn-primary">Face Enrolment</button>
+                </td>
+                </tr>
+            </tbody>
+        
+        </table>
+        </div>
