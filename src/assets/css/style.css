@@ -60,7 +60,7 @@ header{
 	border: 8px solid #c7c7c7;
 	position: relative;
 	overflow: hidden;
-	
+	margin-top:20px; 
 }
 .face-container i{
   font-size: 150px;
@@ -95,11 +95,11 @@ left: -48px;
 	}
 	.page-heading{
 		border-bottom: 1px solid #e2e2e2;
-    /* padding-bottom: 5px; */
-    font-size: 16px;
-    background: #f2f2f2;
-    padding: 10px 21px;
-    margin: 1px 0px 10px;
+		padding-bottom: 5px;
+		font-size: 13px;
+		background: #f2f2f2;
+		padding: 4px 12px;
+		margin: 1px 0px 23px;
 	}
 
 	
@@ -160,4 +160,19 @@ left: -48px;
 		height: 20px;
 		width: 370px;
 		font-size: 16px;
+	}
+	.successMessage{
+		background: green;
+    color: #fff;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 260px;
+    height: 50px;
+    margin: auto;
+    text-align: center;
+    font-size: 18px;
 	}

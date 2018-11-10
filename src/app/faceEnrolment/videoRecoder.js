@@ -5,7 +5,6 @@ var theRecorder;
 var recordedChunks = [];
 
 function startFunction() {
-    debugger
    // document.getElementById("imgIcon").style.display="none";
    // $(".face-container").css({'transform':'scale(1.1)', 'transition':'0.5s ease-in-out'})
   navigator.mediaDevices.getUserMedia(constraints)

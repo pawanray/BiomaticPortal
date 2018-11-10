@@ -8,13 +8,22 @@ import { Router } from '@angular/router';
 export class AddUserComponent {
   constructor(private _dataService:DataService, private _router:Router){}
   public addUserHandler(dataObj:any){
-    debugger
+  
+    if(dataObj.username==""){
+      document.getElementById("userName").style.display="block"
+    }
+    else if(dataObj.email==""){
+      document.getElementById("userEmail").style.display="block"
+    }
+    else{
+      document.getElementById("userName").style.display="none"
+      document.getElementById("userEmail").style.display="none"
     this._dataService.addUser(dataObj)
     .subscribe((dataObj: any) =>  {
-        debugger
         this._router.navigateByUrl('/userList');
           console.log(dataObj)
       });
     console.log("data", dataObj)
   }
+}
 }

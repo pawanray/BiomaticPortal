@@ -1,12 +1,18 @@
-<div class="voice-container">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div class="voice-text">Please speak "Never forget tomorrow is a new day"</div>
-    
+<img src="../../assets/images/voiceIcon.png" width="150" id="voiceIcon" class="center-block">
+<div class="text-center">
+<button class="btn btn-sm btn-primary" id="voiceVerify" onclick="startRecording()">Voice Verify</button>
+</div>
 <div id="formats" style="display:none">Format: start recording to see sample rate</div>
 <h3 style="display:none">Recordings</h3>
-
+<div  class="voice-overlay">
+<div class="voice-container">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+<div class="voice-text">Please speak "Never forget tomorrow is a new day"</div>
+</div>
+<div id="voiceEnrolSucess" style="display:none" class="successMessage">Voice Enroled Sucessfuly </div>
+<div id="voiceVerifySucess" style="display:none" class="successMessage">Voice Verify Sucessfuly </div>

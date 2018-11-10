@@ -17,11 +17,11 @@ feachCurrentUserDetails(userId){
     return this.http.get(this.baseUrl + "/biometric/users/" + userId)
 }
 deleteUser(id){
-    debugger
+    
     return this.http.delete(this.baseUrl + "/biometric/users/" + id + '/delete')
 }
 addUser(obj){
-    debugger
+    
     return this.http.post(this.baseUrl + "/biometric/register/" , obj)
 }
 } 

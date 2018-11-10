@@ -16,10 +16,8 @@ export class UserDetailsComponent {
   }  
 
   ngOnInit(){
-    debugger
       this._dataService.feachCurrentUserDetails(this.userId)
         .subscribe((data: any) =>  {
-          debugger
           var userArray = [];
           userArray.push(data)
           this.currentUserDetail = userArray

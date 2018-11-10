@@ -1,3 +1,5 @@
+<div class="col-sm-12 page-heading">User Details</div>
+<br><div class="col-sm-6" id="dataResult"></div>
 <div class="table-responsive">
         <table class="table table-bordered table-striped">
             <thead>
@@ -12,6 +14,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let list of currentUserDetail; let i = index">
+                   <td class="hidden" id="userId">{{list.userId}}</td> 
                 <td>{{i+1}}</td>
                 <td>{{list.username}}</td>
                 <td>{{list.email}}</td>
@@ -26,18 +29,11 @@
         
         </table>
         </div>
-        <div id="controls" class="text-right">
-          
-                
-                <!-- <button id="pauseButton">Pause</button>
-                <button id="stopButton" onclick="stopRecording()">Stop</button>
-                <button class="btn btn-primary" id="videoRecoder"  onclick="startFunction()">Face Enrolment</button> -->
-             </div>
+        
             
-             <div  class="voice-overlay">
+           
                     <voice-enrolment></voice-enrolment>
-                    </div>
-                    <ol id="recordingsList"  class="col-xs-4 center-block" style="float: none; margin-top: 20px"></ol>
+                    <ol id="recordingsList"  class="col-xs-4 center-block hidden" style="float: none; margin-top: 20px"></ol>
         <div  class="face-overlay">
         <face-enrolment></face-enrolment>
         </div>

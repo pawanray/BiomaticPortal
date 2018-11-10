@@ -11,21 +11,17 @@ export class UserListComponent {
   constructor(private _dataService:DataService){}
   
   ngOnInit(){
-      debugger
+      
         this._dataService.featchUserList()
           .subscribe((data: any) =>  {
-            debugger
             this.userList=data
               console.log(data)
           });
       }
    
       deleteUserHandler(id){
-          debugger
         this._dataService.deleteUser(id)
         .subscribe((deleteData: any) =>  {
-            debugger
-            
               console.log(deleteData)
           });
       }

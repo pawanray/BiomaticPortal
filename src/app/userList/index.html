@@ -1,3 +1,5 @@
+<div class="col-sm-12 page-heading">User List</div>
+<br><div class="col-sm-6" id="dataResult"></div>
 <div class="table-responsive">
 <table class="table table-bordered table-striped">
     <thead>
@@ -17,7 +19,7 @@
         <td>{{list.email}}</td>
         <td>{{list.voiceEnrolled}}</td>
         <td>{{list.faceEnrolled}}</td>
-        <td><button [routerLink]="['/userList', list.userId]" class="btn btn-xs btn-default">
+        <td><button  [routerLink]="['/userList', list.userId]" class="btn btn-xs btn-default viewIcon">
             <i class="fa fa-eye" aria-hidden="true"></i></button>&nbsp;
             <button  class="btn btn-xs btn-primary">
                 <i class="fa fa-pencil" aria-hidden="true"></i></button>&nbsp;

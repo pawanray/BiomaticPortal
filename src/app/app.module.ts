@@ -16,6 +16,8 @@ const appRoutes: Routes = [
   { path: 'userList', component: UserListComponent, },
   { path: 'addUser',    component: AddUserComponent },
   { path: 'userList/:userId', component: UserDetailsComponent },
+  { path: 'faceVerify',    component: faceEnrolmentComponent },
+  { path: 'voiceVerify',    component: voiceEnrolmentComponent },
  
   //{ path: '**', component: PageNotFoundComponent }
 ];

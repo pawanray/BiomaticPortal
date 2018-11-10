@@ -21,38 +21,19 @@
     
     
     
-    function startRecording(e) {
+    function startRecording(e, userid) {
+        
         console.log("recordButton clicked");
-    
-        /*
-            Simple constraints object, for more advanced audio features see
-            https://addpipe.com/blog/audio-constraints-getusermedia/
-        */
+        userId = userid;
+       
         
         var constraints = { audio: true, video:false }
     
-         /*
-            Disable the record button until we get a success or fail from getUserMedia() 
-        */
-    
-        // recordButton.disabled = true;
-        // stopButton.disabled = false;
-        // pauseButton.disabled = false
-    
-        /*
-            We're using the standard promise based getUserMedia() 
-            https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
-        */
-    
+        
         navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
             console.log("getUserMedia() success, stream created, initializing Recorder.js ...");
     
-            /*
-                create an audio context after getUserMedia is called
-                sampleRate might change after getUserMedia is called, like it does on macOS when recording through AirPods
-                the sampleRate defaults to the one set in your OS for your playback device
-    
-            */
+          
             audioContext = new AudioContext();
     
             //update the format 
@@ -64,15 +45,12 @@
             /* use the stream */
             input = audioContext.createMediaStreamSource(stream);
     
-            /* 
-                Create the Recorder object and configure to record mono sound (1 channel)
-                Recording 2 channels  will double the file size
-            */
+          
             rec = new Recorder(input,{numChannels:1})
     
             //start the recording process
             rec.record()
-        debugger
+        
             console.log("Recording started");
       document.getElementsByClassName('voice-overlay')[0].style.display = 'flex';
       document.getElementById('recordingsList').style.display = 'none'
@@ -121,19 +99,9 @@
     
     
     
-    document.addEventListener("click",function(e){
-    if(e.target.id =="recordButton"){
-      setTimeout(function () {    //  call a 3s setTimeout when the loop is called
-          alert('hello');          //  your code here
-                  //  if the counter < 10, call the loop function
-             stopRecording();
-             document.getElementsByClassName('voice-overlay')[0].style.display = 'none';  
-             document.getElementById('recordingsList').style.display = 'block'         
-       }, 5000)
-      }
-    })
     
-    function stopRecording() {
+    
+    function stopRecording(name) {
         console.log("stopButton clicked");
     
         //disable the stop button, enable the record too allow for new recordings
@@ -151,7 +119,7 @@
         gumStream.getAudioTracks()[0].stop();
     
         //create the wav blob and pass it on to createDownloadLink
-        rec.exportWAV(createDownloadLink);
+        rec.exportWAV(createDownloadLink,name);
         
     }
     
@@ -213,11 +181,32 @@
                     // }           
                   }
               };
-              // var fd=new FormData();
-              // fd.append("audio",blob, filename);
-              // xhr.open("POST",`https://biometric-access.herokuapp.com/biometric/enrol/${userId}/voice`,true);
-              // xhr.send(fd);
-              // console.log('voice recored succesfuly')
+              if(blob.type=="voiceenrol"){
+              var userId =document.getElementById("userId").innerText
+              var fd=new FormData();
+              fd.append("audio",blob, filename);
+              xhr.open("POST",`https://biometric-access.herokuapp.com/biometric/enrol/${userId}/voice`,true);
+              xhr.send(fd);
+              document.getElementById("voiceEnrolSucess").style.display="inline-block"
+              setTimeout(function(){
+                document.getElementById("voiceEnrolSucess").style.display="none"
+              },1000)
+              
+              console.log('voice recored succesfuly')
+            }
+
+            if(blob.type=="voiceverify"){
+                var fd=new FormData();
+                fd.append("audio",blob, filename);
+                xhr.open("POST",`https://biometric-access.herokuapp.com/biometric/verify/voice`,true);
+                xhr.send(fd);
+                console.log('voice verify succesfuly')
+                document.getElementById("voiceVerifySucess").style.display="inline-block"
+              setTimeout(function(){
+                document.getElementById("voiceVerifySucess").style.display="none"
+              },1000)
+              }
+
               // recordButton.disabled = false;
         // })
         
@@ -227,10 +216,44 @@
     
         //add the li element to the ol
       recordingsList.appendChild(li);
-      
-      var i = 1;                     //  set your counter to 1
-    
+      //  set your counter to 1
           
     }
     
-    
+    document.addEventListener("click",function(e){
+        if(e.target.id =="recordButton"){
+          setTimeout(function () {    //  call a 3s setTimeout when the loop is called
+             // alert('hello');          //  your code here
+                      //  if the counter < 10, call the loop function
+                 stopRecording("voiceEnrol");
+                 document.getElementsByClassName('voice-overlay')[0].style.display = 'none';  
+                 document.getElementById('recordingsList').style.display = 'block'         
+           }, 5000)
+          
+          }
+        })
+        
+        document.addEventListener("click",function(e){
+            if(e.target.id =="voiceVerify"){
+              setTimeout(function () {    //  call a 3s setTimeout when the loop is called
+                 // alert('hello');          //  your code here
+                          //  if the counter < 10, call the loop function
+                     stopRecording("voiceVerify");
+                     
+                     document.getElementsByClassName('voice-overlay')[0].style.display = 'none';  
+                     document.getElementById('recordingsList').style.display = 'block'         
+               }, 5000)
+              }
+            })
+            document.addEventListener("click",function(e){
+                
+                if(e.target.className =="btn btn-xs btn-default viewIcon"){
+                    document.getElementById('voiceIcon').style.display = 'none';
+                    document.getElementById('voiceVerify').style.display = 'none';
+                  }
+                  else if(e.target.className =="fa fa-eye"){
+                    document.getElementById('voiceIcon').style.display = 'none';
+                    document.getElementById('voiceVerify').style.display = 'none';
+                  }
+                })
+            

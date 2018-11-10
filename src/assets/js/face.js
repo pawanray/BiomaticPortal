@@ -2,10 +2,10 @@ const constraints = { "video": { width: { max: 400 } }, "audio" : false };
 
 var theStream;
 var theRecorder;
+var blob;
 var recordedChunks = [];
 
 function startFunction() {
-    debugger
    // document.getElementById("imgIcon").style.display="none";
    // $(".face-container").css({'transform':'scale(1.1)', 'transition':'0.5s ease-in-out'})
   navigator.mediaDevices.getUserMedia(constraints)
@@ -28,32 +28,25 @@ function gotMedia(stream) {
   recorder.ondataavailable = 
       (event) => { recordedChunks.push(event.data); };
   recorder.start(100);
-  document.getElementsByClassName("face-overlay")[0].style.display="flex";
+  document.getElementsByClassName('face-overlay')[0].style.display = 'flex';
 //document.getElementById("imgIcon").style.display="none";
 }
 
 // From @samdutton's "Record Audio and Video with MediaRecorder"
 // https://developers.google.com/web/updates/2016/01/mediarecorder
-function download() {
+function download(name) {
   theRecorder.stop();
   theStream.getTracks().forEach(track => { track.stop(); });
 
-  var blob = new Blob(recordedChunks, {type: "video/webm"});
+  blob = new Blob(recordedChunks, {type: "video/webm"});
   var url =  URL.createObjectURL(blob);
-  //var a = document.createElement("a");
-  //document.body.appendChild(a);
- // a.style = "display: none";
-  //a.href = url;
- // a.download = 'test.webm';
-  //a.click();
-  // setTimeout() here is needed for Firefox.
   setTimeout(function() { URL.revokeObjectURL(url); }, 100); 
 
    var xhr=new XMLHttpRequest();
 		  xhr.onload=function(e) {
 		      if(this.readyState === 4) {
                   console.log("Server returned: ",e.target.responseText);
-                  a.style = "display: none";
+                 // a.style = "display: none";
 
                 var data = e.target.responseText;
                 var jsonResponse = JSON.parse(data);
@@ -71,26 +64,57 @@ function download() {
 				// }  
 
 		      }
-		  };
-		  var fd=new FormData();
-		  fd.append("video",blob);
-		  xhr.open("POST","https://biometric-access.herokuapp.com/biometric/verify/face",true);
-          xhr.send(fd);
-           console.log("Face Enrolment succesfuly")
+          };
+          if(name=="faceEnrol"){
+          var userId =document.getElementById("userId").innerText
+         
+            var fd=new FormData();
+            fd.append("video",blob);
+            xhr.open("POST",`https://biometric-access.herokuapp.com/biometric/enrol/${userId}/face`,true);
+            xhr.send(fd);
+             console.log("Face Enrolment succesfuly")
+             document.getElementById("faceEnrolSucess").style.display="inline-block"
+             setTimeout(function(){
+               document.getElementById("faceEnrolSucess").style.display="none"
+             },1000)
+        }
+        else if(name=="faceVerify"){
+             var fd=new FormData();
+             fd.append("video",blob);
+             xhr.open("POST",`https://biometric-access.herokuapp.com/biometric/verify/face`,true);
+             xhr.send(fd);
+              console.log("Face Verify succesfuly")
+              document.getElementById("faceVerifySucess").style.display="inline-block"
+              setTimeout(function(){
+                document.getElementById("faceVerifySucess").style.display="none"
+              },1000)
+        }
+          
+         
 }
 
-document.addEventListener("click", function(event){
+document.addEventListener("click",function(e){
     
-	if(event.target.id=="videoRecoder"){
+	if(e.target.id=="videoRecoder"){
 		setTimeout(function(){
             //theRecorder.stop();
-            download();
-            document.getElementsByClassName("face-overlay")[0].style.display="none";
+            download("faceEnrol");
+            document.getElementsByClassName('face-overlay')[0].style.display = 'none';
            // document.getElementById("imgIcon").style.display="block";
+		},10000)
+		document.getElementById("faceVerify").style.display="none";
+	}
+	console.log(event.target)
+});
+
+document.addEventListener("click",function(e){
+    
+	if(e.target.id=="faceVerify"){
+		setTimeout(function(){
+            download("faceVerify");
 		},10000)
 		
 	}
 	console.log(event.target)
-    //var text = $(event.target).text();
 });
 
