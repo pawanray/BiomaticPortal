@@ -18,7 +18,7 @@
                 <td>{{list.voiceEnrolled}}</td>
                 <td>{{list.faceEnrolled}}</td>
                 <td>
-                    <button class="btn btn-xs btn-primary" onclick="startRecording()">Voice Enrolment</button>&nbsp;
+                        <button id="recordButton" class="btn btn-xs btn-primary" onclick="startRecording()">Voice Enrolment</button>&nbsp;
                     <button class="btn btn-xs btn-primary" id="videoRecoder" onclick="startFunction()">Face Enrolment</button>
                 </td>
                 </tr>
@@ -26,7 +26,18 @@
         
         </table>
         </div>
-       
+        <div id="controls" class="text-right">
+          
+                
+                <!-- <button id="pauseButton">Pause</button>
+                <button id="stopButton" onclick="stopRecording()">Stop</button>
+                <button class="btn btn-primary" id="videoRecoder"  onclick="startFunction()">Face Enrolment</button> -->
+             </div>
+            
+             <div  class="voice-overlay">
+                    <voice-enrolment></voice-enrolment>
+                    </div>
+                    <ol id="recordingsList"  class="col-xs-4 center-block" style="float: none; margin-top: 20px"></ol>
         <div  class="face-overlay">
         <face-enrolment></face-enrolment>
         </div>
