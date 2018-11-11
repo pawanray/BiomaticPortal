@@ -51,17 +51,20 @@ function download(name) {
                 var data = e.target.responseText;
                 var jsonResponse = JSON.parse(data);
                 
-                // if(jsonResponse["status"] == 'SUCC'){
-				// 	$("#dataResult").html("<p style='background-color:#7FA7B0; color:white; padding:20px 20px 20px 20px'>" +
-                //     jsonResponse["message"] + "<br>").fadeIn('slow', function(){
-				// 		$('#dataResult').delay(6000).fadeOut()
-				// 	});
-				// }else{
-				// 	$("#dataResult").html("<p style='background-color:#F6795E; color:white; padding:20px 20px 20px 20px'>" +
-                //     jsonResponse["message"] + "<br>").fadeIn('slow', function(){
-				// 		$('#dataResult').delay(6000).fadeOut()
-				// 	});
-				// }  
+                if(jsonResponse["status"] == 'SUCC'){
+					document.getElementById("dataResult").innerHTML =`<p style='background-color:#7FA7B0; color:white; padding:20px 20px 20px 20px'>` +
+                    jsonResponse["message"] + "<br>";
+                    setTimeout(function(){
+                        document.getElementById("dataResult").style.display="none"
+                    },10000)
+				}else{
+					document.getElementById("dataResult").innerHTML = `<p style='background-color:#F6795E; color:white; padding:20px 20px 20px 20px'>` +
+                    jsonResponse["message"] + "<br>";
+                    setTimeout(function(){
+                        document.getElementById("dataResult").style.display="none"
+                    },10000)
+					
+				}  
 
 		      }
           };
@@ -73,10 +76,10 @@ function download(name) {
             xhr.open("POST",`https://biometric-access.herokuapp.com/biometric/enrol/${userId}/face`,true);
             xhr.send(fd);
              console.log("Face Enrolment succesfuly")
-             document.getElementById("faceEnrolSucess").style.display="inline-block"
-             setTimeout(function(){
-               document.getElementById("faceEnrolSucess").style.display="none"
-             },1000)
+            //  document.getElementById("faceEnrolSucess").style.display="inline-block"
+            //  setTimeout(function(){
+            //    document.getElementById("faceEnrolSucess").style.display="none"
+            //  },1000)
         }
         else if(name=="faceVerify"){
              var fd=new FormData();
@@ -84,10 +87,10 @@ function download(name) {
              xhr.open("POST",`https://biometric-access.herokuapp.com/biometric/verify/face`,true);
              xhr.send(fd);
               console.log("Face Verify succesfuly")
-              document.getElementById("faceVerifySucess").style.display="inline-block"
-              setTimeout(function(){
-                document.getElementById("faceVerifySucess").style.display="none"
-              },1000)
+            //   document.getElementById("faceVerifySucess").style.display="inline-block"
+            //   setTimeout(function(){
+            //     document.getElementById("faceVerifySucess").style.display="none"
+            //   },1000)
         }
           
          

@@ -19,7 +19,7 @@ const appRoutes: Routes = [
   { path: 'faceVerify',    component: faceEnrolmentComponent },
   { path: 'voiceVerify',    component: voiceEnrolmentComponent },
  
-  //{ path: '**', component: PageNotFoundComponent }
+  { path: '**', redirectTo: '/userList', pathMatch: 'full' },
 ];
 
 

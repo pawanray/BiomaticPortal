@@ -167,18 +167,21 @@
                     
                     console.log(jsonResponse["code"]);
                     console.log(jsonResponse["message"]);
-                    // if(jsonResponse["status"] == 'SUCC'){
-                    // 	$("#dataResult").html("<p style='background-color:#7FA7B0; color:white; padding:20px 20px 20px 20px'>" +
-            //             jsonResponse["message"] + "<br>").fadeIn('slow', function(){
-                    // 		$('#dataResult').delay(6000).fadeOut()
-                    // 	});
-                    // 	$('#voiceId').html('true');
-                    // }else{
-                    // 	$("#dataResult").html("<p style='background-color:#F6795E; color:white; padding:20px 20px 20px 20px'>" +
-            //             jsonResponse["message"] + "<br>").fadeIn('slow', function(){
-                    // 		$('#dataResult').delay(6000).fadeOut()
-                    // 	});
-                    // }           
+                    if(jsonResponse["status"] == 'SUCC'){
+                        document.getElementById("dataResult").innerHTML = `<p style='background-color:#7FA7B0; color:white; padding:20px 20px 20px 20px'>` +
+                        jsonResponse["message"] + "<br>";
+                        setTimeout(function(){
+                            document.getElementById("dataResult").style.display="none"
+                        },10000)
+                    	}
+                    	//$('#voiceId').html('true');
+                    else{
+                    	document.getElementById("dataResult").innerHTML =`<p style='background-color:#F6795E; color:white; padding:20px 20px 20px 20px'>` +
+                        jsonResponse["message"] + "<br>"
+                        setTimeout(function(){
+                            document.getElementById("dataResult").style.display="none"
+                        },10000)
+                    }           
                   }
               };
               if(blob.type=="voiceenrol"){
@@ -187,10 +190,10 @@
               fd.append("audio",blob, filename);
               xhr.open("POST",`https://biometric-access.herokuapp.com/biometric/enrol/${userId}/voice`,true);
               xhr.send(fd);
-              document.getElementById("voiceEnrolSucess").style.display="inline-block"
-              setTimeout(function(){
-                document.getElementById("voiceEnrolSucess").style.display="none"
-              },1000)
+            //   document.getElementById("voiceEnrolSucess").style.display="inline-block"
+            //   setTimeout(function(){
+            //     document.getElementById("voiceEnrolSucess").style.display="none"
+            //   },1000)
               
               console.log('voice recored succesfuly')
             }
@@ -201,10 +204,10 @@
                 xhr.open("POST",`https://biometric-access.herokuapp.com/biometric/verify/voice`,true);
                 xhr.send(fd);
                 console.log('voice verify succesfuly')
-                document.getElementById("voiceVerifySucess").style.display="inline-block"
-              setTimeout(function(){
-                document.getElementById("voiceVerifySucess").style.display="none"
-              },1000)
+            //     document.getElementById("voiceVerifySucess").style.display="inline-block"
+            //   setTimeout(function(){
+            //     document.getElementById("voiceVerifySucess").style.display="none"
+            //   },1000)
               }
 
               // recordButton.disabled = false;
