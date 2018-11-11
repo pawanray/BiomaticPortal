@@ -124,7 +124,7 @@
     }
     
     function createDownloadLink(blob) {
-        debugger
+        
         var url = window.URL.createObjectURL(blob);
         var au = document.createElement('audio');
         var li = document.createElement('li');
@@ -171,7 +171,7 @@
                         document.getElementById("dataResult").innerHTML = `<p style='background-color:#7FA7B0; color:white; padding:20px 20px 20px 20px'>` +
                         jsonResponse["message"] + "<br>";
                         setTimeout(function(){
-                            document.getElementById("dataResult").style.display="none"
+                            document.getElementById("dataResult").innerHTML = ""
                         },10000)
                     	}
                     	//$('#voiceId').html('true');
@@ -179,7 +179,7 @@
                     	document.getElementById("dataResult").innerHTML =`<p style='background-color:#F6795E; color:white; padding:20px 20px 20px 20px'>` +
                         jsonResponse["message"] + "<br>"
                         setTimeout(function(){
-                            document.getElementById("dataResult").style.display="none"
+                            document.getElementById("dataResult").innerHTML = ""
                         },10000)
                     }           
                   }

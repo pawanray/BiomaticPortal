@@ -82,14 +82,15 @@ left: -48px;
 
 	.face-overlay, .voice-overlay{
 		background: rgba(0, 0, 0, 0.7);
-		position: fixed;
-		top:0px;
+		position: absolute;
+		top:0;
 		bottom:0px;
 		left: 0;
 		right: 0;
-		width: 100%;
-		height: 100%;
+		width: 400px;
+		height:300px;
 		display: none;
+		margin:5% auto;
 		justify-content: center;
     align-items: center;
 	}
