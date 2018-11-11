@@ -230,7 +230,7 @@
                       //  if the counter < 10, call the loop function
                  stopRecording("voiceEnrol");
                  document.getElementsByClassName('voice-overlay')[0].style.display = 'none';  
-                 document.getElementById('recordingsList').style.display = 'block'         
+                // document.getElementById('recordingsList').style.display = 'block'         
            }, 5000)
           
           }
@@ -244,19 +244,19 @@
                      stopRecording("voiceVerify");
                      
                      document.getElementsByClassName('voice-overlay')[0].style.display = 'none';  
-                     document.getElementById('recordingsList').style.display = 'block'         
+                     //document.getElementById('recordingsList').style.display = 'block'         
                }, 5000)
               }
             })
-            document.addEventListener("click",function(e){
+            // document.addEventListener("click",function(e){
                 
-                if(e.target.className =="btn btn-xs btn-default viewIcon"){
-                    document.getElementById('voiceIcon').style.display = 'none';
-                    document.getElementById('voiceVerify').style.display = 'none';
-                  }
-                  else if(e.target.className =="fa fa-eye"){
-                    document.getElementById('voiceIcon').style.display = 'none';
-                    document.getElementById('voiceVerify').style.display = 'none';
-                  }
-                })
+            //     if(e.target.className =="btn btn-xs btn-default viewIcon"){
+            //         document.getElementById('voiceIcon').style.display = 'none';
+            //         document.getElementById('voiceVerify').style.display = 'none';
+            //       }
+            //       else if(e.target.className =="fa fa-eye"){
+            //         document.getElementById('voiceIcon').style.display = 'none';
+            //         document.getElementById('voiceVerify').style.display = 'none';
+            //       }
+            //     })
             

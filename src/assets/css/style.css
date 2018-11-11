@@ -67,6 +67,7 @@ header{
   margin: auto;
   display: table;
 	color: #424141;
+	z-index: 1;
 	
 }
 .face-container p{

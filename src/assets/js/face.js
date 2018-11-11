@@ -99,10 +99,12 @@ function download(name) {
 document.addEventListener("click",function(e){
     
 	if(e.target.id=="videoRecoder"){
+        document.getElementsByClassName('fa fa-user')[0].style.zIndex=0;
 		setTimeout(function(){
             //theRecorder.stop();
             download("faceEnrol");
             document.getElementsByClassName('face-overlay')[0].style.display = 'none';
+            document.getElementsByClassName('fa fa-user')[0].style.zIndex=1;
            // document.getElementById("imgIcon").style.display="block";
 		},10000)
 		document.getElementById("faceVerify").style.display="none";
@@ -113,8 +115,10 @@ document.addEventListener("click",function(e){
 document.addEventListener("click",function(e){
     
 	if(e.target.id=="faceVerify"){
+        document.getElementsByClassName('fa fa-user')[0].style.zIndex=0;
 		setTimeout(function(){
             download("faceVerify");
+            document.getElementsByClassName('fa fa-user')[0].style.zIndex=1;
 		},10000)
 		
 	}
